@@ -1,0 +1,2 @@
+class Twistee < ApplicationRecord
+end

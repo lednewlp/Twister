@@ -1,0 +1,22 @@
+<%= form_with(model: twistee, local: true) do |form| %>
+  <% if twistee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(twistee.errors.count, "error") %> prohibited this twistee from being saved:</h2>
+
+      <ul>
+        <% twistee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :twistee %>
+    <%= form.text_area :twistee %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
