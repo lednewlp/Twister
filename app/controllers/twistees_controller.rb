@@ -4,7 +4,8 @@ class TwisteesController < ApplicationController
   # GET /twistees
   # GET /twistees.json
   def index
-    @twistees = Twistee.all
+    @twistees = Twistee.all.order('created_at DESC')
+    @twistee = Twistee.new
   end
 
   # GET /twistees/1
