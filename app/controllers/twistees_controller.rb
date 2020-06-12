@@ -1,5 +1,6 @@
 class TwisteesController < ApplicationController
   before_action :set_twistee, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /twistees
   # GET /twistees.json
@@ -15,7 +16,7 @@ class TwisteesController < ApplicationController
 
   # GET /twistees/new
   def new
-    @twistee = Twistee.new
+    @twistee = current_user.twistees.build
   end
 
   # GET /twistees/1/edit
@@ -25,11 +26,11 @@ class TwisteesController < ApplicationController
   # POST /twistees
   # POST /twistees.json
   def create
-    @twistee = Twistee.new(twistee_params)
+    @twistee = current_user.twistees.build(twistee_params)
 
     respond_to do |format|
       if @twistee.save
-        format.html { redirect_to @twistee, notice: 'Twistee was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Twistee was successfully created.' }
         format.json { render :show, status: :created, location: @twistee }
       else
         format.html { render :new }
